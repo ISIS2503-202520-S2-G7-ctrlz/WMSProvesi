@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get("PEDIDOS_DB", "pedidos_db"),
         'USER': os.environ.get("PROVESI_USER", "provesi_user"),
-        'PASSWORD': os.environ.get("ISIS2503", "Isis2503"),
+        'PASSWORD': os.environ.get("PROVESI_PASSWORD", "isis2503"),
         'HOST': os.environ.get("PEDIDOS_DB_HOST", "localhost"),
         'PORT': os.environ.get("PEDIDOS_DB_PORT", "5432")
     }
