@@ -33,7 +33,7 @@ async def get_bodega(bodega_code: str):
     status_code=status.HTTP_201_CREATED,
 )
 async def create_bodega(bodega: Bodega = Body(...)):
-    return await bodegas_service.create_place(bodega)
+    return await bodegas_service.create_bodega(bodega)
 
 
 @router.put(

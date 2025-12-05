@@ -15,8 +15,6 @@ MONGO_URI = (
 )
 
 client = None
-database = None
-bodegas_collection = None
 
 
 async def set_bodegas_db():

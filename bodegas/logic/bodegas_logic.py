@@ -9,9 +9,10 @@ Main functions:
 """
 
 from models.models import Bodega, BodegaCollection
-from models.db import bodegas_collection
+from models import db
 from pymongo.errors import DuplicateKeyError
 from fastapi import HTTPException
+
 
 
 async def get_bodegas():
@@ -19,7 +20,7 @@ async def get_bodegas():
     Get a list of bodegas
     :return: A list of bodegas
     """
-    bodegas = await bodegas_collection.find().to_list(1000)
+    bodegas = await db.bodegas_collection.find().to_list(1000)
     return BodegaCollection(bodegas=bodegas)
 
 
@@ -29,7 +30,7 @@ async def get_bodega(bodega_code: str):
     :param bodega_code: The code of the bodega
     :return: The bodega
     """
-    if (bodega := await bodegas_collection.find_one({"code": bodega_code})) is not None:
+    if (bodega := await db.bodegas_collection.find_one({"code": bodega_code})) is not None:
         return bodega
 
     raise HTTPException(
@@ -43,10 +44,10 @@ async def create_bodega(bodega: Bodega):
     """
 
     try:
-        new_bodega = await bodegas_collection.insert_one(
+        new_bodega = await db.bodegas_collection.insert_one(
             bodega.model_dump(by_alias=True, exclude=["id"])
         )
-        created_bodega = await bodegas_collection.find_one({"_id": new_bodega.inserted_id})
+        created_bodega = await db.bodegas_collection.find_one({"_id": new_bodega.inserted_id})
         return created_bodega
 
     except DuplicateKeyError:
@@ -64,13 +65,13 @@ async def update_bodega(bodega_code: str, bodega: Bodega):
     """
 
     try:
-        update_result = await bodegas_collection.update_one(
+        update_result = await db.bodegas_collection.update_one(
             {"code": bodega_code},
             {"$set": bodega.model_dump(by_alias=True, exclude=["id"])},
         )
         if update_result.modified_count == 1:
             if (
-                updated_bodega := await bodegas_collection.find_one({"code": bodega.code})
+                updated_bodega := await db.bodegas_collection.find_one({"code": bodega.code})
             ) is not None:
                 return updated_bodega
     except DuplicateKeyError:
@@ -89,7 +90,7 @@ async def delete_bodega(bodega_code: str):
     Delete a bodega
     :param bodega_code: The code of the bodega
     """
-    delete_result = await bodegas_collection.delete_one({"code": bodega_code})
+    delete_result = await db.bodegas_collection.delete_one({"code": bodega_code})
 
     if delete_result.deleted_count == 1:
         return
