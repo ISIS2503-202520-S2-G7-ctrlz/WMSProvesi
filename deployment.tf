@@ -338,7 +338,7 @@ resource "aws_instance" "kong" {
     Role = "api-gateway"
   })
 
-  depends_on = [aws_instance.variables_ms, aws_instance.measurements_ms]
+  depends_on = [aws_instance.productos_ms, aws_instance.pedidos_ms]
 }
 
 # Salida. Muestra la dirección IP pública de la instancia de Kong (API Gateway).
@@ -347,26 +347,26 @@ output "kong_public_ip" {
   value       = aws_instance.kong.public_ip
 }
 
-# Salida. Muestra las direcciones IP públicas de la instancia de Variables MS.
-output "variables_ms_public_ip" {
-  description = "Public IP address for the Variables Microservice instance"
-  value       = aws_instance.variables_ms.public_ip
+# Salida. Muestra las direcciones IP públicas de la instancia de Productos MS.
+output "productos_ms_public_ip" {
+  description = "Public IP address for the Productos Microservice instance"
+  value       = aws_instance.productos_ms.public_ip
 }
 
-# Salida. Muestra las direcciones IP públicas de la instancia de Measurements MS.
-output "measurements_ms_public_ip" {
-  description = "Public IP address for the Measurements Microservice instance"
-  value       = aws_instance.measurements_ms.public_ip
+# Salida. Muestra las direcciones IP públicas de la instancia de Pedidos MS.
+output "pedidos_ms_public_ip" {
+  description = "Public IP address for the Pedidos Microservice instance"
+  value       = aws_instance.pedidos_ms.public_ip
 }
 
-# Salida. Muestra las direcciones IP privadas de la instancia de la base de datos de Variables.
-output "variables_db_private_ip" {
-  description = "Private IP address for the Variables Database instance"
-  value       = aws_instance.variables_db.private_ip
+# Salida. Muestra las direcciones IP privadas de la instancia de la base de datos de Productos.
+output "productos_db_private_ip" {
+  description = "Private IP address for the Productos Database instance"
+  value       = aws_instance.productos_db.private_ip
 }
 
 # Salida. Muestra las direcciones IP privadas de la instancia de la base de datos de Measurements.
-output "measurements_db_private_ip" {   
-  description = "Private IP address for the Measurements Database instance"
-  value       = aws_instance.measurements_db.private_ip
+output "pedidos_db_private_ip" {   
+  description = "Private IP address for the Pedidos Database instance"
+  value       = aws_instance.pedidos_db.private_ip
 }
