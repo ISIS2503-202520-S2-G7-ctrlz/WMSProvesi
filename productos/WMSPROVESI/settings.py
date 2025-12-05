@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'WMSPROVESI.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'provesi_db',
+        'NAME': 'productos_db',
         'USER': 'provesi_user',
-        'PASSWORD': 'isis2503',
+        'PASSWORD': 'Isis2503',
         'HOST': 'localhost',
         'PORT': '5432',
     }
