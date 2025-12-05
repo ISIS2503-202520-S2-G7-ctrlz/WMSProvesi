@@ -2,7 +2,7 @@
 # ****** Departamento de Ingeniería de Sistemas y Computación ******
 # ********** Arquitectura y diseño de Software - ISIS2503 **********
 #
-# Infraestructura para laboratorio de Microservicios
+# Infraestructura de Microservicios
 #
 # Elementos a desplegar en AWS:
 # 1. Grupos de seguridad:
@@ -365,7 +365,7 @@ output "productos_db_private_ip" {
   value       = aws_instance.productos_db.private_ip
 }
 
-# Salida. Muestra las direcciones IP privadas de la instancia de la base de datos de Measurements.
+# Salida. Muestra las direcciones IP privadas de la instancia de la base de datos de Pedidos.
 output "pedidos_db_private_ip" {   
   description = "Private IP address for the Pedidos Database instance"
   value       = aws_instance.pedidos_db.private_ip
