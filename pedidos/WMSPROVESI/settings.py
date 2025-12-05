@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pedidos.urls'
+ROOT_URLCONF = 'WMSPROVESI.urls'
 
 TEMPLATES = [
     {
@@ -66,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pedidos.wsgi.application'
+WSGI_APPLICATION = 'WMSPROVESI.wsgi.application'
 
 
 # Database
